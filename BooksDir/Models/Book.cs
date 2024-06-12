@@ -1,5 +1,8 @@
-namespace BookDir.Models;
+using System.Collections.Generic; // Import the namespace for List<T>
+using BooksDir.Models; // Import the namespace for Book class
 
+namespace BooksDir.Models
+{
 public class Book
 {
     public int Id { get; set; }
@@ -7,4 +10,6 @@ public class Book
     public string? Description { get; set; }
     public int Pages { get; set; }
     public int Year { get; set; }
-}
+    public Author Author { get; set; } 
+        public Genre Genre { get; set; }
+}}
