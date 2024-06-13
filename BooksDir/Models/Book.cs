@@ -10,6 +10,8 @@ public class Book
     public string? Description { get; set; }
     public int Pages { get; set; }
     public int Year { get; set; }
+    public int AuthorId { get; set; } 
     public Author Author { get; set; } 
-        public Genre Genre { get; set; }
+    public int GenreId { get; set; } 
+    public Genre Genre { get; set; }
 }}
