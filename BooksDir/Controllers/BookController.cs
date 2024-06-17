@@ -12,6 +12,7 @@ namespace books.Controllers {
             return View();
         }  
         [HttpPost] 
+        [ValidateAntiForgeryToken]
 
            public IActionResult Create(Book book) {
             return View();
