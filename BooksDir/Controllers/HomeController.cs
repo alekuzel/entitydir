@@ -12,7 +12,7 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-     //Startsidan
+     //Startsidan to be renamed then the view will be created 
     public IActionResult Index()
     {
         return View();
