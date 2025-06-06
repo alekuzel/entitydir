@@ -5,7 +5,7 @@ namespace BooksDir.Models
 {
 public class Book
 {
-    public int BookId { get; set; }
+    public int Id { get; set; }
     public string? Title { get; set; }
     public string? Description { get; set; }
     public int Pages { get; set; }

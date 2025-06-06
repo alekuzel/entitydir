@@ -54,7 +54,7 @@ namespace BookLibrary.Controllers
 
             var book = await _context.Books
                 .Include(b => b.Author)
-                .FirstOrDefaultAsync(m => m.BookId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (book == null) return NotFound();
 
@@ -78,7 +78,7 @@ namespace BookLibrary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Book book)
         {
-            if (id != book.BookId) return NotFound();
+            if (id != book.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace BookLibrary.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!_context.Books.Any(e => e.BookId == id)) return NotFound();
+                    if (!_context.Books.Any(e => e.Id == id)) return NotFound();
                     else throw;
                 }
                 return RedirectToAction(nameof(Index));
@@ -106,7 +106,7 @@ namespace BookLibrary.Controllers
 
             var book = await _context.Books
                 .Include(b => b.Author)
-                .FirstOrDefaultAsync(m => m.BookId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (book == null) return NotFound();
 
