@@ -1,13 +1,14 @@
-using System.Collections.Generic; // Import the namespace for List<T>
-using BooksDir.Models; // Import the namespace for Book class
+using System.ComponentModel.DataAnnotations;
 
 namespace BooksDir.Models
 {
     public class Genre
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
+        public int GenreId { get; set; }
 
-        public List<Book>? Books { get; set; }
+        [Required]
+        public string Name { get; set; } = string.Empty;
+
+        public ICollection<Book> Books { get; set; } = new List<Book>();
     }
 }
