@@ -19,21 +19,12 @@ namespace BookLibrary.Controllers
         // GET: Books
         public async Task<IActionResult> Index()
         {
-            var books = _context.Books
-                .Include(b => b.Author)
-                .Include(b => b.Genre);
-            return View(await books.ToListAsync());
-        }
-
-        // Debugging helper
-        public async Task<IActionResult> CheckData()
-        {
             var books = await _context.Books
                 .Include(b => b.Author)
                 .Include(b => b.Genre)
                 .ToListAsync();
 
-            return Json(books);
+            return View(books);
         }
 
         // GET: Books/Create
@@ -48,12 +39,11 @@ namespace BookLibrary.Controllers
         public async Task<IActionResult> Create(BookFormModel formModel)
         {
             if (!ModelState.IsValid)
-            {
                 return View(formModel);
-            }
 
             var author = await _context.Authors
                 .FirstOrDefaultAsync(a => a.AuthorName.ToLower() == formModel.AuthorName.ToLower());
+
             if (author == null)
             {
                 author = new Author { AuthorName = formModel.AuthorName };
@@ -63,6 +53,7 @@ namespace BookLibrary.Controllers
 
             var genre = await _context.Genres
                 .FirstOrDefaultAsync(g => g.GenreName.ToLower() == formModel.GenreName.ToLower());
+
             if (genre == null)
             {
                 genre = new Genre { GenreName = formModel.GenreName };
@@ -89,14 +80,16 @@ namespace BookLibrary.Controllers
         // GET: Books/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return NotFound();
+            if (id == null)
+                return NotFound();
 
             var book = await _context.Books
                 .Include(b => b.Author)
                 .Include(b => b.Genre)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
-            if (book == null) return NotFound();
+            if (book == null)
+                return NotFound();
 
             var formModel = new BookFormModel
             {
@@ -124,7 +117,8 @@ namespace BookLibrary.Controllers
             }
 
             var book = await _context.Books.FindAsync(id);
-            if (book == null) return NotFound();
+            if (book == null)
+                return NotFound();
 
             var author = await _context.Authors
                 .FirstOrDefaultAsync(a => a.AuthorName.ToLower() == formModel.AuthorName.ToLower());
@@ -157,40 +151,10 @@ namespace BookLibrary.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Books/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null) return NotFound();
-
-            var book = await _context.Books
-                .Include(b => b.Author)
-                .Include(b => b.Genre)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (book == null) return NotFound();
-
-            return View(book);
-        }
-
-        // GET: Books/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null) return NotFound();
-
-            var book = await _context.Books
-                .Include(b => b.Author)
-                .Include(b => b.Genre)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (book == null) return NotFound();
-
-            return View(book);
-        }
-
         // POST: Books/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var book = await _context.Books.FindAsync(id);
             if (book != null)
@@ -201,5 +165,34 @@ namespace BookLibrary.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        // Optional: JSON debug endpoint
+        public async Task<IActionResult> CheckData()
+        {
+            var books = await _context.Books
+                .Include(b => b.Author)
+                .Include(b => b.Genre)
+                .ToListAsync();
+
+            return Json(books);
+        }
+
+        // GET: Books/Details/5
+public async Task<IActionResult> Details(int? id)
+{
+    if (id == null)
+        return NotFound();
+
+    var book = await _context.Books
+        .Include(b => b.Author)
+        .Include(b => b.Genre)
+        .FirstOrDefaultAsync(b => b.Id == id);
+
+    if (book == null)
+        return NotFound();
+
+    return View(book);
+}
+
     }
 }
