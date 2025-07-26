@@ -22,7 +22,7 @@
           "lib/net6.0/Azure.Core.dll": {
             "related": ".xml"
           }
-        }
+        } 
       },
       "Azure.Identity/1.10.3": {
         "type": "package",

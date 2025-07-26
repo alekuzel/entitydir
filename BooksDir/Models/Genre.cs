@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BooksDir.Models
@@ -7,8 +8,8 @@ namespace BooksDir.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public string GenreName { get; set; }
 
-        public ICollection<Book> Books { get; set; } = new List<Book>();
+        public List<Book> Books { get; set; }
     }
 }

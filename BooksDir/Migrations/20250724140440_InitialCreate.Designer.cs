@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BooksDir.Migrations
 {
     [DbContext(typeof(BookContext))]
-    [Migration("20240613100528_InitialCreate")]
+    [Migration("20250724140440_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -25,7 +25,8 @@ namespace BooksDir.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("AuthorName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -72,7 +73,8 @@ namespace BooksDir.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("GenreName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -82,21 +84,21 @@ namespace BooksDir.Migrations
 
             modelBuilder.Entity("BooksDir.Models.Book", b =>
                 {
-                    b.HasOne("BooksDir.Models.Author", "Author")
+                    b.HasOne("BooksDir.Models.Author", "AuthorName")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BooksDir.Models.Genre", "Genre")
+                    b.HasOne("BooksDir.Models.Genre", "GenreName")
                         .WithMany("Books")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
+                    b.Navigation("AuthorName");
 
-                    b.Navigation("Genre");
+                    b.Navigation("GenreName");
                 });
 
             modelBuilder.Entity("BooksDir.Models.Author", b =>
