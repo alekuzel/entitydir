@@ -176,23 +176,28 @@ namespace BookLibrary.Controllers
 
             return Json(books);
         }
+        
+         public IActionResult About()
+        {
+            return View(); 
+        }
 
         // GET: Books/Details/5
-public async Task<IActionResult> Details(int? id)
-{
-    if (id == null)
-        return NotFound();
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
 
-    var book = await _context.Books
-        .Include(b => b.Author)
-        .Include(b => b.Genre)
-        .FirstOrDefaultAsync(b => b.Id == id);
+            var book = await _context.Books
+                .Include(b => b.Author)
+                .Include(b => b.Genre)
+                .FirstOrDefaultAsync(b => b.Id == id);
 
-    if (book == null)
-        return NotFound();
+            if (book == null)
+                return NotFound();
 
-    return View(book);
-}
+            return View(book);
+        }
 
     }
 }
