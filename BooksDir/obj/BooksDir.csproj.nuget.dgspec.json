@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\46764\\entitydir\\booksdir\\BooksDir.csproj": {}
+    "C:\\Users\\46764\\entitydir\\BooksDir\\BooksDir.csproj": {}
   },
   "projects": {
-    "C:\\Users\\46764\\entitydir\\booksdir\\BooksDir.csproj": {
+    "C:\\Users\\46764\\entitydir\\BooksDir\\BooksDir.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\46764\\entitydir\\booksdir\\BooksDir.csproj",
+        "projectUniqueName": "C:\\Users\\46764\\entitydir\\BooksDir\\BooksDir.csproj",
         "projectName": "BooksDir",
-        "projectPath": "C:\\Users\\46764\\entitydir\\booksdir\\BooksDir.csproj",
+        "projectPath": "C:\\Users\\46764\\entitydir\\BooksDir\\BooksDir.csproj",
         "packagesPath": "C:\\Users\\46764\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\46764\\entitydir\\booksdir\\obj\\",
+        "outputPath": "C:\\Users\\46764\\entitydir\\BooksDir\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
